@@ -1,0 +1,22 @@
+<form [formGroup]="this.form" (submit)="this._onSumit()" id="my-form">
+    <label> First name</label>
+    <ta-input>
+        <input type="text" [formControlName]="'firstName'"/>
+    </ta-input>
+    <label> Last name</label>
+    <ta-input>
+        <input type="text" [formControlName]="'lastName'"/>
+    </ta-input>
+    <label> Username</label>
+    <ta-input>
+        <input type="text" [formControlName]="'userName'"/>
+    </ta-input>
+    <ta-input>
+        <label>Email</label>
+        <input type="email" [formControlName]="'email'"/>
+    </ta-input>
+</form>
+<input type="submit" value="test" form="my-form"/>
+<ta-button form="my-form"> Sumbmit </ta-button>
+<button type="submit" form="my-form">Submit</button>
+

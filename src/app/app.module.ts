@@ -1,16 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule , CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import {TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SharedModule } from './shared/shared.module';
 
 registerLocaleData(en);
 
@@ -23,6 +24,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppComponent
   ],
   imports: [
+    SharedModule,
     BrowserModule,
     AppRoutingModule,
     NgZorroAntdModule,
@@ -32,16 +34,15 @@ export function createTranslateLoader(http: HttpClient) {
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
-          provide: TranslateLoader,
-          useFactory: (createTranslateLoader),
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
       }
-  })
+    })
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
   ],
-  bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
