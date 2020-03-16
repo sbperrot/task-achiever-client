@@ -1,0 +1,7 @@
+<div class="app-authentifier--container">
+    <nz-card class="app-authentifier-card">
+        <div app-create-user [form]="this.form" *ngIf="this._creationMode" (onSubmit)="this.onSubmit($event)"></div>
+        <div app-authenticate-user [form]="this.form" *ngIf="!this._creationMode" (onSubmit)="this.onSubmit($event)"></div>
+        <button nz-button nzType="link" *ngIf="!this._creationMode" (click)="this.switchMode(true)">Or create a new account</button>
+    </nz-card>
+</div>
