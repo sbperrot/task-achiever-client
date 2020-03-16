@@ -1,19 +1,29 @@
 import { Component } from '@angular/core';
-import { TasksService } from './shared/services/tasks.service.service';
+import { UserService } from './shared/services/user.service';
+import { UserInterface } from './shared/interfaces';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [ TasksService ]
+  providers: [ UserService ]
 })
 export class AppComponent {
-  title = 'task-achiever';
-  
-  constructor(private _taskService : TasksService) {
-    this._taskService.fetchAll().subscribe(( data ) => { console.log(data); })
-  }
+  private unsubscriber$ = new Subject<void>();  
 
-  test = ($event) => console.log($event, "OK");
+  ngOnDestroy() {
+    this.unsubscriber$.next();
+    this.unsubscriber$.complete();
+  }
+  
+  constructor(private _userService : UserService) {
+    this._userService.getUser()
+      .pipe(takeUntil(this.unsubscriber$))
+      .subscribe(( _value : UserInterface ) => {
+        console.log(_value);
+      })
+  }
 
 }

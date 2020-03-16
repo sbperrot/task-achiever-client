@@ -5,20 +5,20 @@ import { LoginRoutingModule } from './login-routing.module';
 import { LoginMainComponent } from './main.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { CreateUserComponent } from './components';
+import { CreateUserComponent, AuthenticateUserComponent } from './components';
 
 @NgModule({
   declarations: [
     LoginMainComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    AuthenticateUserComponent
   ],
   imports: [
-    SharedModule,
     CommonModule,
     LoginRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

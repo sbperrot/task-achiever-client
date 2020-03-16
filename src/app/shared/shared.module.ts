@@ -1,16 +1,23 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { KeysPipe } from './pipes';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    KeysPipe
+  ],
   imports: [
     CommonModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgZorroAntdModule
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  exports: [
+    NgZorroAntdModule,
+    KeysPipe
+  ]
 })
 export class SharedModule { }

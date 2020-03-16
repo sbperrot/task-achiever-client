@@ -8,11 +8,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import en from '@angular/common/locales/en';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SharedModule } from './shared/shared.module';
+import { TokenInterceptor } from './shared/interceptors';
 
+/** config angular i18n **/
 registerLocaleData(en);
 
 export function createTranslateLoader(http: HttpClient) {
@@ -27,7 +31,6 @@ export function createTranslateLoader(http: HttpClient) {
     SharedModule,
     BrowserModule,
     AppRoutingModule,
-    NgZorroAntdModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -38,10 +41,12 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: (createTranslateLoader),
         deps: [HttpClient]
       }
-    })
+    }),
+    NgZorroAntdModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

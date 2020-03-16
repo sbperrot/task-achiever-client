@@ -1,22 +1,54 @@
-<form [formGroup]="this.form" (submit)="this._onSumit()" id="my-form">
-    <label> First name</label>
-    <ta-input>
-        <input type="text" [formControlName]="'firstName'"/>
-    </ta-input>
-    <label> Last name</label>
-    <ta-input>
-        <input type="text" [formControlName]="'lastName'"/>
-    </ta-input>
-    <label> Username</label>
-    <ta-input>
-        <input type="text" [formControlName]="'userName'"/>
-    </ta-input>
-    <ta-input>
-        <label>Email</label>
-        <input type="email" [formControlName]="'email'"/>
-    </ta-input>
-</form>
-<input type="submit" value="test" form="my-form"/>
-<ta-button form="my-form"> Sumbmit </ta-button>
-<button type="submit" form="my-form">Submit</button>
+<form nz-form [formGroup]="this.form" (submit)="this._onSubmit(this.form)">
+  <!-- First name form part -->
+  <nz-form-item>
+    <nz-form-label nzFor="firstName"> First name</nz-form-label>
+    <nz-form-control>
+      <input nz-input name="firstName" type="text" id="firstName" formControlName="firstName">
+    </nz-form-control>
+  </nz-form-item>
 
+  <!-- Last name form part -->
+  <nz-form-item>
+    <nz-form-label nzFor="lastName"> First name</nz-form-label>
+    <nz-form-control>
+      <input nz-input name="lastName" type="text" id="lastName" formControlName="lastName">
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- User name form part -->
+  <nz-form-item>
+    <nz-form-label nzFor="userName"> Username</nz-form-label>
+    <nz-form-control>
+      <input nz-input name="userName" type="text" id="userName" formControlName="userName">
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- User name form part -->
+  <nz-form-item>
+    <nz-form-label nzFor="email">Email</nz-form-label>
+    <nz-form-control>
+      <input nz-input name="email" type="email" id="email" formControlName="email">
+    </nz-form-control>
+  </nz-form-item>
+
+  <div formGroupName="security">
+    <!-- Password form part -->
+    <nz-form-item>
+      <nz-form-label nzFor="password">Password</nz-form-label>
+      <nz-form-control>
+        <input nz-input name="password" type="password" id="password" formControlName="password">
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Confirm password form part -->
+    <nz-form-item>
+      <nz-form-label nzFor="confirm">Confirm password</nz-form-label>
+      <nz-form-control>
+        <input nz-input name="confirm" type="password" id="confirm" formControlName="confirm">
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+
+  <button nz-button nzType="primary" [disabled]="this.form.invalid" nzBlock>Create account</button>
+
+</form>

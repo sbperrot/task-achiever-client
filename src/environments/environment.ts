@@ -2,11 +2,14 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 import * as tasksAPI from '../configs/api';
+import * as authAPI from '../configs/api';
 
 export const environment = {
   production: false,
   api : {
-    tasks : tasksAPI.baseAPI
+    tasks: '/api/v0/tasks',
+    auth: '/api/v0/auth',
+    user: '/api/v0/users'
   }
 };
 
