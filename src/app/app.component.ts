@@ -14,4 +14,6 @@ export class AppComponent {
     this._taskService.fetchAll().subscribe(( data ) => { console.log(data); })
   }
 
+  test = ($event) => console.log($event, "OK");
+
 }
